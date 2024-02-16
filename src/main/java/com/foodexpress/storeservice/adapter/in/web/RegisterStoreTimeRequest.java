@@ -5,10 +5,14 @@ import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import com.foodexpress.storeservice.domain.storetime.TimeType;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
+@Getter
+@Setter
 @ToString
 @EqualsAndHashCode
 public class RegisterStoreTimeRequest {

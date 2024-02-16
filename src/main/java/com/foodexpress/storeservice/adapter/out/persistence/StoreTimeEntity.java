@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Table(name = "store_time")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true)
 public class StoreTimeEntity extends UpdatedEntity {
