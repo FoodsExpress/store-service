@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @ToString
+@Table(name = "store")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 public class StoreEntity extends UpdatedEntity {
