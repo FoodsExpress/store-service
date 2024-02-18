@@ -25,6 +25,7 @@ public class RegisterStoreController {
     private final ModifyStoreUseCase modifyStoreUseCase;
 
     @PostMapping
+    @PostMapping("/store")
     public ResponseEntity<RegisterStoreResponse> registerStore(@RequestBody RegisterStoreRequest registerStoreRequest) {
         Store store = registerStoreUseCase.registerStore(registerStoreRequest.convertCommand());
         List<RegisterStoreTimeCommand> timeCommandList = registerStoreRequest.getStoreTimeList()
