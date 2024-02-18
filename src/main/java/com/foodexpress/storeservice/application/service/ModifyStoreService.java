@@ -11,6 +11,7 @@ import com.foodexpress.storeservice.domain.account.Account;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 
 @UseCase
@@ -34,9 +35,9 @@ public class ModifyStoreService implements ModifyStoreUseCase {
 
     @Override
     public List<StoreTime> modifyStoreTime(ModifyStoreTimesCommand modifyStoreTimesCommand) {
-        Account account = accountPort.findByAccount(modifyStoreTimesCommand.getStoreUserId());
+        Optional<Account> account = Optional.ofNullable(accountPort.findByAccount(modifyStoreTimesCommand.getStoreUserId()));
 
-        if (account == null) {
+        if (account.isEmpty()) {
             throw new OmittedRequireFieldException("요청자에 해당하는 상점을 찾을 수 없습니다.");
         }
 
