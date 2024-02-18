@@ -8,6 +8,7 @@ import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class RegisterStoreController {
     private final RegisterStoreUseCase registerStoreUseCase;
     private final RegisterStoreTimeUseCase registerStoreTimeUseCase;
 
-    @PostMapping
-    public ResponseEntity<RegisterStoreResponse> registerStore(RegisterStoreRequest registerStoreRequest) {
+    @PostMapping("/store")
+    public ResponseEntity<RegisterStoreResponse> registerStore(@RequestBody RegisterStoreRequest registerStoreRequest) {
         Store store = registerStoreUseCase.registerStore(registerStoreRequest.convertCommand());
         List<RegisterStoreTimeCommand> timeCommandList =
             registerStoreRequest.getStoreTimeList().stream().map(r -> r.mapToCommand(store.id())).toList();
