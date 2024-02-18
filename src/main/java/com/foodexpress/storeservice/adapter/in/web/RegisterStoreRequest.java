@@ -1,12 +1,12 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
 import com.foodexpress.storeservice.application.port.in.RegisterStoreCommand;
-import com.foodexpress.storeservice.domain.store.BizNo;
 import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -17,7 +17,7 @@ public class RegisterStoreRequest {
     /**
      * 사업자 등록번호
      */
-    private BizNo bizNo;
+    private String bizNo;
 
     /**
      * 점주 식별자
@@ -56,7 +56,7 @@ public class RegisterStoreRequest {
      */
     private RegisterAddressRequest address;
 
-    private List<RegisterStoreTimeRequest> storeTimeList;
+    private List<RegisterStoreTimeRequest> storeTimeList = new ArrayList<>();
     /**
      * 원산지
      * COS 라고도 불림.
@@ -66,7 +66,9 @@ public class RegisterStoreRequest {
     public RegisterStoreCommand convertCommand() {
         RegisterStoreCommand registerStoreCommand = new RegisterStoreCommand();
         copyProperties(this, registerStoreCommand);
-        registerStoreCommand.setAddress(address.mapToDomain());
+        if (address != null) {
+            registerStoreCommand.setAddress(address.mapToDomain());
+        }
         return registerStoreCommand;
     }
 

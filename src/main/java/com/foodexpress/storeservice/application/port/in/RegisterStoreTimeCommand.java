@@ -1,5 +1,6 @@
 package com.foodexpress.storeservice.application.port.in;
 
+import com.foodexpress.storeservice.common.SelfValidating;
 import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import com.foodexpress.storeservice.domain.storetime.TimeType;
@@ -9,8 +10,8 @@ import lombok.ToString;
 
 @Setter
 @ToString
-@EqualsAndHashCode
-public class RegisterStoreTimeCommand {
+@EqualsAndHashCode(callSuper = false)
+public class RegisterStoreTimeCommand extends SelfValidating<RegisterStoreTimeCommand> {
 
     private Long storeId;
 
@@ -35,6 +36,7 @@ public class RegisterStoreTimeCommand {
     private DayOfWeek dayOfWeek;
 
     public StoreTime mapToDomain() {
+        this.validateSelf();
         return StoreTime.builder()
             .storeId(Long.toString(storeId))
             .timeType(timeType)
