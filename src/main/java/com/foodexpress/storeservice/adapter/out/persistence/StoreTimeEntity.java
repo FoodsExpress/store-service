@@ -3,13 +3,19 @@ package com.foodexpress.storeservice.adapter.out.persistence;
 import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import com.foodexpress.storeservice.domain.storetime.TimeType;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -39,7 +45,8 @@ public class StoreTimeEntity extends UpdatedEntity {
     public static StoreTimeEntity mapToEntity(StoreTime storeTime) {
         StoreTimeEntity entity = new StoreTimeEntity();
         entity.store = StoreEntity.of(storeTime.storeId());
-        entity.storeTimeId = UUID.randomUUID().toString();
+        entity.storeTimeId = UUID.randomUUID()
+                                 .toString();
         entity.timeType = storeTime.timeType();
         entity.startTime = storeTime.startTime();
         entity.endTime = storeTime.endTime();
@@ -49,13 +56,19 @@ public class StoreTimeEntity extends UpdatedEntity {
 
     public StoreTime mapToDomain() {
         return StoreTime.builder()
-            .storeTimeId(storeTimeId)
-            .storeId(store.getStoreId())
-            .timeType(timeType)
-            .startTime(startTime)
-            .endTime(endTime)
-            .dayOfWeek(dayOfWeek)
-            .build();
+                        .storeTimeId(storeTimeId)
+                        .storeId(store.getStoreId())
+                        .timeType(timeType)
+                        .startTime(startTime)
+                        .endTime(endTime)
+                        .dayOfWeek(dayOfWeek)
+                        .build();
     }
 
+    public void modifyStoreTime(StoreTime storeTime) {
+        this.timeType = storeTime.timeType();
+        this.startTime = storeTime.startTime();
+        this.endTime = storeTime.endTime();
+        this.dayOfWeek = storeTime.dayOfWeek();
+    }
 }

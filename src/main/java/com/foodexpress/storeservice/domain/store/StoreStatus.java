@@ -39,4 +39,9 @@ public enum StoreStatus {
      * 영업을 그만두거나 망해서 가게가 더 이상 운영되지 않는 상태
      */
     CLOSURE,
+    /**
+     * <p>심사중</p>
+     * 상점이 생성되었거나 정보 변경을 원하는 경우의 상태
+     */
+    UNDER_REVIEW;
 }
