@@ -5,11 +5,26 @@ import com.foodexpress.storeservice.domain.store.BizNo;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;
-import jakarta.persistence.*;
-import lombok.*;
-
+import com.foodexpress.storeservice.domain.storetime.StoreTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @Entity
@@ -66,10 +81,15 @@ public class StoreEntity extends UpdatedEntity {
     @Embedded
     private Address address;
 
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private Set<StoreTimeEntity> storeTimeList = new HashSet<>();
+
     public static StoreEntity mapToEntity(Store store) {
         StoreEntity entity = new StoreEntity();
-        entity.storeId = UUID.randomUUID().toString();
-        entity.bizNo = store.bizNo().getBizNumber();
+        entity.storeId = UUID.randomUUID()
+                             .toString();
+        entity.bizNo = store.bizNo()
+                            .getBizNumber();
         entity.storeUserId = store.storeUserId();
         entity.franchiseId = store.franchiseId();
         entity.storeType = store.storeType();
@@ -87,15 +107,33 @@ public class StoreEntity extends UpdatedEntity {
 
     public Store mapToDomain() {
         return Store.builder()
-            .storeId(storeId)
-            .bizNo(BizNo.create(bizNo))
-            .storeUserId(storeUserId)
-            .franchiseId(franchiseId)
-            .storeType(storeType)
-            .storeName(storeName)
-            .startedAt(startedAt)
-            .address(address)
-            .build();
+                    .storeId(storeId)
+                    .bizNo(BizNo.create(bizNo))
+                    .storeUserId(storeUserId)
+                    .franchiseId(franchiseId)
+                    .storeType(storeType)
+                    .storeName(storeName)
+                    .startedAt(startedAt)
+                    .address(address)
+                    .build();
     }
 
+    public void modify(Store store) {
+        this.storeName = store.storeName();
+        this.storeType = store.storeType();
+        this.address = store.address();
+        this.storeStatus = StoreStatus.UNDER_REVIEW;
+    }
+
+    public List<StoreTime> storeTimeListToDomain() {
+        return this.storeTimeList.stream()
+                                 .map(storeTime -> StoreTime.builder()
+                                                            .storeTimeId(storeTime.getStoreTimeId())
+                                                            .startTime(storeTime.getStartTime())
+                                                            .endTime(storeTime.getEndTime())
+                                                            .timeType(storeTime.getTimeType())
+                                                            .dayOfWeek(storeTime.getDayOfWeek())
+                                                            .build())
+                                 .toList();
+    }
 }
