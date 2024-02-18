@@ -17,10 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ModifyStoreCommand {
 
+    private Long id;
+
+    private String storeId;
+
     /**
      * 사업자 등록번호
      */
-    private BizNo bizNo;
+    private String bizNo;
 
     /**
      * 점주 식별자
@@ -67,18 +71,20 @@ public class ModifyStoreCommand {
 
     private List<StoreTime> storeTimeList;
 
-     public Store mapToDomain() {
+    public Store mapToDomain() {
         return Store.builder()
-            .bizNo(bizNo)
-            .storeUserId(storeUserId)
-            .franchiseId(franchiseId)
-            .storeType(storeType)
-            .storeName(storeName)
-            .storeStatus(storeStatus)
-            .startedAt(startedAt)
-            .address(address)
-            .certificateOfAnalysis(certificateOfAnalysis)
-            .storeTimeList(storeTimeList)
-            .build();
+                    .bizNo(BizNo.create(bizNo))
+                    .id(id)
+                    .storeId(storeId)
+                    .storeUserId(storeUserId)
+                    .franchiseId(franchiseId)
+                    .storeType(storeType)
+                    .storeName(storeName)
+                    .storeStatus(storeStatus)
+                    .startedAt(startedAt)
+                    .address(address)
+                    .certificateOfAnalysis(certificateOfAnalysis)
+                    .storeTimeList(storeTimeList)
+                    .build();
     }
 }
