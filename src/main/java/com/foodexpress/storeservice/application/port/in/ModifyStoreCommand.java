@@ -17,8 +17,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ModifyStoreCommand {
 
-    private Long id;
-
+    /**
+     * 상점 고유 값
+     */
     private String storeId;
 
     /**
@@ -74,7 +75,6 @@ public class ModifyStoreCommand {
     public Store mapToDomain() {
         return Store.builder()
                     .bizNo(BizNo.create(bizNo))
-                    .id(id)
                     .storeId(storeId)
                     .storeUserId(storeUserId)
                     .franchiseId(franchiseId)
