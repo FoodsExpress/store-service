@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
@@ -20,14 +21,16 @@ public class ModifyStorePortAdapter implements ModifyStorePort {
     private final StoreTimeRepository storeTimeRepository;
 
     @Override
+    @Transactional
     public Store modifyStore(Store store) {
-        StoreEntity modifyStore = storeRepository.findById(store.id())
+        StoreEntity modifyStore = storeRepository.findByStoreId(store.storeId())
                                                  .orElseThrow(() -> new OmittedRequireFieldException("일치하는 상점을 찾을 수 없습니다."));
         modifyStore.modify(store);
         return modifyStore.mapToDomain();
     }
 
     @Override
+    @Transactional
     public List<StoreTime> modifyStoreTimes(String storeId, List<StoreTime> storeTimes) {
         StoreEntity storeEntity = storeRepository.findByStoreId(storeId)
                                                  .orElseThrow(() -> new OmittedRequireFieldException("일치하는 상점을 찾을 수 없습니다."));
@@ -50,11 +53,14 @@ public class ModifyStorePortAdapter implements ModifyStorePort {
 
         }
 
+        List<Long> deleteStoreTimeIdList = new ArrayList<>();
         for (StoreTimeEntity storeTimeEntity : storeTimeList) {
             if (!existStoreTimeId.contains(storeTimeEntity.getStoreTimeId())) {
-                storeTimeRepository.delete(storeTimeEntity);
+                deleteStoreTimeIdList.add(storeTimeEntity.getId());
             }
         }
+        
+        storeTimeRepository.deleteAllByIdInBatch(deleteStoreTimeIdList);
 
         return storeEntity.storeTimeListToDomain();
     }
