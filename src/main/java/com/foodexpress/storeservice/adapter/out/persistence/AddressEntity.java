@@ -1,7 +1,10 @@
 package com.foodexpress.storeservice.adapter.out.persistence;
 
+import com.foodexpress.storeservice.domain.address.Address;
 import com.foodexpress.storeservice.domain.address.AddressType;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,11 +32,13 @@ public class AddressEntity {
     /**
      * 검색된 기본 주소 타입: R(도로명), J(지번)
      */
+    @Enumerated(EnumType.STRING)
     private AddressType addressType;
 
     /**
      * 검색 결과에서 사용자가 선택한 주소의 타입
      */
+    @Enumerated(EnumType.STRING)
     private AddressType userSelectedType;
 
     /**
@@ -93,5 +98,47 @@ public class AddressEntity {
      * 법정동/법정리 이름
      */
     private String bname;
+
+    public static AddressEntity mapToEntity(Address address) {
+        return AddressEntity.builder()
+            .zonecode(address.zonecode())
+            .address(address.address())
+            .addressEnglish(address.addressEnglish())
+            .addressType(address.addressType())
+            .userSelectedType(address.userSelectedType())
+            .roadAddress(address.roadAddress())
+            .jibunAddress(address.jibunAddress())
+            .buildingCode(address.buildingCode())
+            .buildingName(address.buildingName())
+            .apartment(address.apartment())
+            .sido(address.sido())
+            .sigungu(address.sigungu())
+            .sigunguCode(address.sigunguCode())
+            .roadnameCode(address.roadnameCode())
+            .bcode(address.bcode())
+            .bname(address.bname())
+            .build();
+    }
+
+    public Address mapToDomain() {
+        return Address.builder()
+            .zonecode(this.zonecode)
+            .address(this.address)
+            .addressEnglish(this.addressEnglish)
+            .addressType(this.addressType)
+            .userSelectedType(this.userSelectedType)
+            .roadAddress(this.roadAddress)
+            .jibunAddress(this.jibunAddress)
+            .buildingCode(this.buildingCode)
+            .buildingName(this.buildingName)
+            .apartment(this.apartment)
+            .sido(this.sido)
+            .sigungu(this.sigungu)
+            .sigunguCode(this.sigunguCode)
+            .roadnameCode(this.roadnameCode)
+            .bcode(this.bcode)
+            .bname(this.bname)
+            .build();
+    }
 
 }
