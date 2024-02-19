@@ -37,7 +37,7 @@ public class ModifyStoreController {
      * @param modifyStoreTimeRequest
      * @return
      */
-    @PatchMapping
+    @PatchMapping("/time")
     public ApiUtil.ApiResult<ModifyStoreTimeResponse> modifyStoreTime(@RequestBody ModifyStoreTimesRequest modifyStoreTimeRequest) {
         List<StoreTime> storeTimes = modifyStoreUseCase.modifyStoreTime(modifyStoreTimeRequest.convertCommand());
 
