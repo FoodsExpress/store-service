@@ -1,6 +1,5 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.foodexpress.storeservice.application.port.in.SearchStoreQuery;
 import lombok.Data;
 
@@ -13,7 +12,6 @@ public class SearchStoreRequest {
 
     private String bizNo;
 
-    @JsonProperty("isUse")
     private boolean use;
 
     public SearchStoreQuery convertQuery() {
