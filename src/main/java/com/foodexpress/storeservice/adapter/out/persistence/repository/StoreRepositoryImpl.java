@@ -2,8 +2,8 @@ package com.foodexpress.storeservice.adapter.out.persistence.repository;
 
 import com.foodexpress.storeservice.adapter.out.persistence.Querydsl5Support;
 import com.foodexpress.storeservice.adapter.out.persistence.StoreDto;
-import com.foodexpress.storeservice.adapter.out.persistence.StoreEntity;
 import com.foodexpress.storeservice.adapter.out.persistence.StoreSearchCondition;
+import com.foodexpress.storeservice.adapter.out.persistence.entity.StoreEntity;
 import com.foodexpress.storeservice.domain.store.Store;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.foodexpress.storeservice.adapter.out.persistence.QStoreEntity.storeEntity;
+import static com.foodexpress.storeservice.adapter.out.persistence.entity.QStoreEntity.storeEntity;
 import static com.querydsl.core.types.Projections.fields;
 
 public class StoreRepositoryImpl extends Querydsl5Support implements StoreRepositoryQuerydsl {
