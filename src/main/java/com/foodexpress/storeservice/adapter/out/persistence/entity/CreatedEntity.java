@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.out.persistence;
+package com.foodexpress.storeservice.adapter.out.persistence.entity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class CreatedEntity {
 
     @CreatedBy
-    protected Long createdBy;
+    protected String createdBy;
 
     @CreatedDate
     protected LocalDateTime createdDate;
