@@ -18,7 +18,7 @@ public class SearchStoreService implements SearchStoreUseCase {
 
     @Override
     public List<Store> getStoreList(SearchStoreQuery searchStoreQuery, Pageable pageable) {
-        return null;
+        return searchStorePort.findAllBySearchCondition(searchStoreQuery.convertCondition(), pageable);
     }
 
 }

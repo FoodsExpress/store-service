@@ -3,19 +3,19 @@ package com.foodexpress.storeservice.adapter.in.web;
 import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeCommand;
 import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeUseCase;
 import com.foodexpress.storeservice.application.port.in.RegisterStoreUseCase;
-import com.foodexpress.storeservice.common.BaseRestAnnotation;
 import com.foodexpress.storeservice.common.util.ApiUtil.ApiResult;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import static com.foodexpress.storeservice.common.util.ApiUtil.success;
 
-@BaseRestAnnotation
+@RestController
 @RequiredArgsConstructor
 public class RegisterStoreController {
 

@@ -51,13 +51,6 @@ public class RegisterStoreCommand extends SelfValidating<RegisterStoreCommand> {
     private String storeName;
 
     /**
-     * <p>가게 상태</p>
-     * 심사중, 거절, 승인, 정상, 휴점, 폐점
-     */
-    @NotNull
-    private StoreStatus storeStatus;
-
-    /**
      * 상점 시작 일자
      */
     private LocalDate startedAt;
@@ -84,7 +77,7 @@ public class RegisterStoreCommand extends SelfValidating<RegisterStoreCommand> {
             .franchiseId(franchiseId)
             .storeType(storeType)
             .storeName(storeName)
-            .storeStatus(storeStatus)
+            .storeStatus(StoreStatus.PENDING)
             .startedAt(startedAt)
             .address(address)
             .certificateOfAnalysis(certificateOfAnalysis)

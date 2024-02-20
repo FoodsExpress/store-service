@@ -17,7 +17,7 @@ public class RegisterStoreService implements RegisterStoreUseCase {
     public Store registerStore(RegisterStoreCommand registerStoreCommand) {
         Store store = registerStoreCommand.mapToDomain();
         registerStorePort.saveStore(store);
-        return null;
+        return store;
     }
 
 }
