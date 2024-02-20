@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.out.persistence;
+package com.foodexpress.storeservice.adapter.out.persistence.entity;
 
 import com.foodexpress.storeservice.domain.store.BizNo;
 import com.foodexpress.storeservice.domain.store.Store;
