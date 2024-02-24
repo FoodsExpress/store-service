@@ -2,15 +2,9 @@ package com.foodexpress.storeservice.adapter.in.web;
 
 import com.foodexpress.storeservice.domain.address.Address;
 import com.foodexpress.storeservice.domain.address.AddressType;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 public class RegisterAddressRequest {
 
     /**
