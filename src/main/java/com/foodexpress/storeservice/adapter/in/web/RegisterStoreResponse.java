@@ -4,13 +4,11 @@ import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.List;
 
-@ToString
-@EqualsAndHashCode
+@Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegisterStoreResponse {
 

@@ -42,7 +42,7 @@ public class SecurityConfig {
                                                                                                            "/v3/api-docs/**",
                                                                                                            "/swagger-resources/**",
                                                                                                            "/actuator/**").permitAll()
-                .anyRequest().authenticated()).addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().permitAll()).addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

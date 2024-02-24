@@ -1,7 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
 import com.foodexpress.storeservice.application.port.in.RegisterStoreCommand;
-import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;
 import lombok.Data;
 
@@ -39,12 +38,6 @@ public class RegisterStoreRequest {
      * 가게 이름
      */
     private String storeName;
-
-    /**
-     * <p>가게 상태</p>
-     * 심사중, 거절, 승인, 정상, 휴점, 폐점
-     */
-    private StoreStatus storeStatus;
 
     /**
      * 상점 시작 일자

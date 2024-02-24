@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.out.persistence;
+package com.foodexpress.storeservice.adapter.out.persistence.entity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class UpdatedEntity extends CreatedEntity {
 
     @LastModifiedBy
-    private Long updateBy;
+    private String updateBy;
 
     @LastModifiedDate
     private LocalDateTime updateDate;

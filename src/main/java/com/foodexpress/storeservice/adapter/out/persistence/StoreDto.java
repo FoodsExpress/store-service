@@ -1,11 +1,53 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.out.persistence;
 
 import com.foodexpress.storeservice.domain.address.Address;
 import com.foodexpress.storeservice.domain.address.AddressType;
-import lombok.Data;
+import com.foodexpress.storeservice.domain.store.BizNo;
+import com.foodexpress.storeservice.domain.store.Store;
+import com.foodexpress.storeservice.domain.store.StoreStatus;
+import com.foodexpress.storeservice.domain.store.StoreType;
+import lombok.Setter;
 
-@Data
-public class RegisterAddressRequest {
+import java.time.LocalDate;
+
+@Setter
+public class StoreDto {
+
+    private String bizNo;
+
+    /**
+     * 점주 식별자
+     */
+    private String storeUserId;
+
+    /**
+     * 프랜차이즈 식별자
+     */
+    private String franchiseId;
+
+    private String storeId;
+
+    /**
+     * <p>상점 유형</p>
+     * 법인, 개인사업자 등
+     */
+    private StoreType storeType;
+
+    /**
+     * 가게 이름
+     */
+    private String storeName;
+
+    /**
+     * <p>가게 상태</p>
+     * 심사중, 거절, 승인, 정상, 휴점, 폐점
+     */
+    private StoreStatus storeStatus;
+
+    /**
+     * 상점 시작 일자
+     */
+    private LocalDate startedAt;
 
     /**
      * 우편번호
@@ -87,10 +129,10 @@ public class RegisterAddressRequest {
      */
     private String bname;
 
-    public Address mapToDomain() {
-        return Address.builder()
+    public Store mapToDomain() {
+        Address addressField = Address.builder()
             .zonecode(zonecode)
-            .address(address)
+            .address(this.address)
             .addressEnglish(addressEnglish)
             .addressType(addressType)
             .userSelectedType(userSelectedType)
@@ -105,6 +147,17 @@ public class RegisterAddressRequest {
             .roadnameCode(roadnameCode)
             .bcode(bcode)
             .bname(bname)
+            .build();
+        return Store.builder()
+            .storeId(storeId)
+            .bizNo(BizNo.create(bizNo))
+            .storeUserId(storeUserId)
+            .franchiseId(franchiseId)
+            .storeType(storeType)
+            .storeName(storeName)
+            .storeStatus(storeStatus)
+            .startedAt(startedAt)
+            .address(addressField)
             .build();
     }
 
