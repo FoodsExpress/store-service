@@ -2,13 +2,13 @@ package com.foodexpress.storeservice.adapter.in.web;
 
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.List;
 
-@ToString
-@Getter @Setter
-@EqualsAndHashCode
+@Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegisterStoreResponse {
 
