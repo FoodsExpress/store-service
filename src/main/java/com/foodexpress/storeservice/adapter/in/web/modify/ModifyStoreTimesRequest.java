@@ -1,13 +1,14 @@
-package com.foodexpress.storeservice.adapter.in.web;
-
-import static org.springframework.beans.BeanUtils.copyProperties;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
 import com.foodexpress.storeservice.application.port.in.ModifyStoreTimesCommand;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.util.List;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @ToString
 @EqualsAndHashCode
@@ -23,4 +24,5 @@ public class ModifyStoreTimesRequest {
         copyProperties(this, modifyStoreTimesCommand);
         return modifyStoreTimesCommand;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
 import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.TimeType;
@@ -21,5 +21,5 @@ public class ModifyStoreTimeRequest {
     private String endTime;
 
     private DayOfWeek dayOfWeek;
-    
+
 }

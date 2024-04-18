@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @Setter
 public class StoreDto {
 
+    private Long id;
+    
     private String bizNo;
 
     /**

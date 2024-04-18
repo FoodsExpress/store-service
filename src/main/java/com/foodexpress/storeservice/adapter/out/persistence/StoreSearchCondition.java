@@ -11,4 +11,10 @@ public class StoreSearchCondition {
 
     private boolean use;
 
+    private Long id;
+
+    private int page;
+
+    private int size;
+
 }
