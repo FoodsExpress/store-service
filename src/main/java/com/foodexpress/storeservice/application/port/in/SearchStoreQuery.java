@@ -14,9 +14,15 @@ public class SearchStoreQuery {
 
     private boolean use;
 
+    private Long id;
+
+    private int page;
+
+    private int size;
+
     public StoreSearchCondition convertCondition() {
         StoreSearchCondition condition = new StoreSearchCondition();
-        copyProperties(condition, this);
+        copyProperties(this, condition);
         return condition;
     }
 
