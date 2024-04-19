@@ -5,11 +5,13 @@ import com.foodexpress.storeservice.adapter.out.persistence.StoreDto;
 import com.foodexpress.storeservice.adapter.out.persistence.StoreSearchCondition;
 import com.foodexpress.storeservice.adapter.out.persistence.entity.StoreEntity;
 import com.foodexpress.storeservice.domain.store.Store;
+import com.querydsl.core.BooleanBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.foodexpress.storeservice.adapter.out.persistence.entity.QStoreEntity.storeEntity;
 import static com.querydsl.core.types.Projections.fields;
@@ -21,9 +23,9 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
     }
 
     @Override
-    public List<Store> findAllBySearchCondition(StoreSearchCondition searchCondition, Pageable pageable) {
-
+    public Slice<Store> findAllBySearchCondition(StoreSearchCondition searchCondition, Pageable pageable) {
         List<StoreDto> storeDtoList = select(fields(StoreDto.class,
+                                                    storeEntity.id,
                                                     storeEntity.bizNo,
                                                     storeEntity.storeId,
                                                     storeEntity.storeUserId,
@@ -31,6 +33,7 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
                                                     storeEntity.storeType,
                                                     storeEntity.storeName,
                                                     storeEntity.storeStatus,
+
                                                     storeEntity.startedAt,
                                                     storeEntity.address.zonecode,
                                                     storeEntity.address.address,
@@ -50,11 +53,26 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
                                                     storeEntity.address.bname
         )).from(storeEntity)
             .where(
-                StringUtils.isNotEmpty(searchCondition.getBizNo()) ? storeEntity.bizNo.eq(searchCondition.getBizNo()) : null,
-                StringUtils.isNotEmpty(searchCondition.getStoreName()) ? storeEntity.storeName.contains(searchCondition.getStoreName()) :
-                    null
-            ).fetch();
-        return storeDtoList.stream().map(StoreDto::mapToDomain).collect(Collectors.toList());
+                whereStoreQuery(searchCondition)
+            ).limit(pageable.getPageNumber() + 1L)
+            .orderBy(storeEntity.id.desc())
+            .fetch();
+        boolean hasNext = false;
+
+        if (storeDtoList.size() > pageable.getPageSize()) {
+            storeDtoList.remove(pageable.getPageSize());
+            hasNext = true;
+        }
+        List<Store> stores = storeDtoList.stream().map(StoreDto::mapToDomain).toList();
+        return new SliceImpl<>(stores, pageable, hasNext);
+    }
+
+    private BooleanBuilder whereStoreQuery(StoreSearchCondition searchCondition) {
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        return booleanBuilder
+            .and(StringUtils.isNotEmpty(searchCondition.getBizNo()) ? storeEntity.bizNo.eq(searchCondition.getBizNo()) : null)
+            .and(StringUtils.isNotEmpty(searchCondition.getStoreName()) ? storeEntity.storeName.contains(searchCondition.getStoreName()) :
+                     null);
     }
 
 }

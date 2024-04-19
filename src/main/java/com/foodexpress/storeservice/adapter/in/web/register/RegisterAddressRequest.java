@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.register;
 
 import com.foodexpress.storeservice.domain.address.Address;
 import com.foodexpress.storeservice.domain.address.AddressType;

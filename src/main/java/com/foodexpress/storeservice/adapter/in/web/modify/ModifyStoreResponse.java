@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.AccessLevel;
@@ -16,4 +16,5 @@ public class ModifyStoreResponse {
     public static ModifyStoreResponse of(Store store) {
         return new ModifyStoreResponse(store);
     }
+
 }
