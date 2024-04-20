@@ -2,7 +2,6 @@ package com.foodexpress.storeservice.adapter.out.persistence;
 
 import com.foodexpress.storeservice.adapter.out.persistence.repository.StoreRepository;
 import com.foodexpress.storeservice.application.port.out.SearchStorePort;
-import com.foodexpress.storeservice.common.PageMeta;
 import com.foodexpress.storeservice.common.Paged;
 import com.foodexpress.storeservice.common.PersistenceAdapter;
 import com.foodexpress.storeservice.domain.store.Store;
@@ -20,7 +19,7 @@ public class SearchStorePortAdapter implements SearchStorePort {
     public Paged<Store> findAllBySearchCondition(StoreSearchCondition searchCondition) {
         Pageable pageable = Pageable.ofSize(searchCondition.getSize());
         Slice<Store> allBySearchCondition = storeRepository.findAllBySearchCondition(searchCondition, pageable);
-        return new Paged<>(PageMeta.of(allBySearchCondition.hasNext()), allBySearchCondition.getContent());
+        return new Paged<>(allBySearchCondition.hasNext(), allBySearchCondition.getContent());
     }
 
 }
