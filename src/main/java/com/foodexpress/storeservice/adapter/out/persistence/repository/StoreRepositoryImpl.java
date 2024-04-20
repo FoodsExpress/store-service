@@ -6,6 +6,7 @@ import com.foodexpress.storeservice.adapter.out.persistence.StoreSearchCondition
 import com.foodexpress.storeservice.adapter.out.persistence.entity.StoreEntity;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -33,8 +34,13 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
                                                     storeEntity.storeType,
                                                     storeEntity.storeName,
                                                     storeEntity.storeStatus,
-
                                                     storeEntity.startedAt,
+                                                    storeEntity.ratings,
+                                                    storeEntity.ratingsCount,
+                                                    storeEntity.deliveryMinTime,
+                                                    storeEntity.deliveryMaxTime,
+                                                    storeEntity.deliveryMinFee,
+                                                    storeEntity.deliveryMaxFee,
                                                     storeEntity.address.zonecode,
                                                     storeEntity.address.address,
                                                     storeEntity.address.addressEnglish,
@@ -53,8 +59,9 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
                                                     storeEntity.address.bname
         )).from(storeEntity)
             .where(
-                whereStoreQuery(searchCondition)
-            ).limit(pageable.getPageNumber() + 1L)
+                whereStoreQuery(searchCondition),
+                eqCursorId(searchCondition.getId())
+            ).limit(pageable.getPageSize() + 1L)
             .orderBy(storeEntity.id.desc())
             .fetch();
         boolean hasNext = false;
@@ -73,6 +80,13 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
             .and(StringUtils.isNotEmpty(searchCondition.getBizNo()) ? storeEntity.bizNo.eq(searchCondition.getBizNo()) : null)
             .and(StringUtils.isNotEmpty(searchCondition.getStoreName()) ? storeEntity.storeName.contains(searchCondition.getStoreName()) :
                      null);
+    }
+
+    private BooleanExpression eqCursorId(Long cursorId) { // (7)
+        if (cursorId != null) {
+            return storeEntity.id.lt(cursorId);
+        }
+        return null;
     }
 
 }
