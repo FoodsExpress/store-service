@@ -1,7 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web.search;
 
 import com.foodexpress.storeservice.application.port.in.SearchStoreUseCase;
-import com.foodexpress.storeservice.common.PageMeta;
 import com.foodexpress.storeservice.common.Paged;
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class SearchStoreController {
     public Paged<StoreInfo> getStoreList(SearchStoreRequest searchStoreRequest) {
         Paged<Store> storePaged = searchStoreUseCase.getStoreList(searchStoreRequest.convertQuery());
         List<StoreInfo> storeInfos = storePaged.data().stream().map(StoreInfo::from).toList();
-        return new Paged<>(PageMeta.of(storePaged.meta().isHasMore()), storeInfos);
+        return new Paged<>(storePaged.hasMore(), storeInfos);
     }
 
 }

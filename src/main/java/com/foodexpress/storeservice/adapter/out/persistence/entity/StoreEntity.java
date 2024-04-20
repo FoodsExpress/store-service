@@ -123,6 +123,7 @@ public class StoreEntity extends UpdatedEntity {
 
     public Store mapToDomain() {
         return Store.builder()
+            .id(id)
             .storeId(storeId)
             .bizNo(BizNo.create(bizNo))
             .storeUserId(storeUserId)
@@ -131,6 +132,12 @@ public class StoreEntity extends UpdatedEntity {
             .storeName(storeName)
             .storeStatus(storeStatus)
             .startedAt(startedAt)
+            .ratings(ratings)
+            .ratingsCount(ratingsCount)
+            .deliveryMinTime(deliveryMinTime)
+            .deliveryMaxTime(deliveryMaxTime)
+            .deliveryMinFee(deliveryMinFee)
+            .deliveryMaxFee(deliveryMaxFee)
             .address(address.mapToDomain())
             .build();
     }
