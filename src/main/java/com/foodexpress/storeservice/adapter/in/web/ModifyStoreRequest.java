@@ -1,14 +1,15 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
-import static org.springframework.beans.BeanUtils.copyProperties;
-
-import com.foodexpress.storeservice.application.port.in.ModifyStoreCommand;
+import com.foodexpress.storeservice.application.port.in.command.ModifyStoreCommand;
 import com.foodexpress.storeservice.domain.store.BizNo;
 import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
-import lombok.Data;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Data
 public class ModifyStoreRequest {
@@ -68,4 +69,5 @@ public class ModifyStoreRequest {
         modifyStoreCommand.setAddress(address.mapToDomain());
         return modifyStoreCommand;
     }
+
 }

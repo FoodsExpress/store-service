@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
-import com.foodexpress.storeservice.application.port.in.RegisterStoreCommand;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreCommand;
 import com.foodexpress.storeservice.domain.store.StoreType;
 import lombok.Data;
 

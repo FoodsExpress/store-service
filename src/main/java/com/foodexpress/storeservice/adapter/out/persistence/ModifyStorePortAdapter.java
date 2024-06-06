@@ -1,6 +1,7 @@
-package com.foodexpress.storeservice.adapter.out.persistence.entity;
+package com.foodexpress.storeservice.adapter.out.persistence;
 
-import com.foodexpress.storeservice.adapter.out.persistence.StoreTimeRepository;
+import com.foodexpress.storeservice.adapter.out.persistence.entity.StoreEntity;
+import com.foodexpress.storeservice.adapter.out.persistence.entity.StoreTimeEntity;
 import com.foodexpress.storeservice.adapter.out.persistence.repository.StoreRepository;
 import com.foodexpress.storeservice.application.port.out.ModifyStorePort;
 import com.foodexpress.storeservice.common.PersistenceAdapter;

@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
-import com.foodexpress.storeservice.application.port.in.SearchStoreUseCase;
+import com.foodexpress.storeservice.application.port.in.query.SearchStoreUseCase;
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.application.port.in;
+package com.foodexpress.storeservice.application.port.in.query;
 
 import com.foodexpress.storeservice.adapter.out.persistence.StoreSearchCondition;
 import lombok.Data;

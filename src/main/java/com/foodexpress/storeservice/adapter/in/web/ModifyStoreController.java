@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web;
 
-import com.foodexpress.storeservice.application.port.in.ModifyStoreUseCase;
+import com.foodexpress.storeservice.application.port.in.command.ModifyStoreUseCase;
 import com.foodexpress.storeservice.common.BaseRestAnnotation;
 import com.foodexpress.storeservice.common.util.ApiUtil;
 import com.foodexpress.storeservice.domain.store.Store;

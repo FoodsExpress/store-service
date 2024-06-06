@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.application.port.in;
+package com.foodexpress.storeservice.application.port.in.command;
 
 import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
@@ -24,10 +24,11 @@ public class ModifyStoreTimeCommand {
 
     public StoreTime mapToDomain() {
         return StoreTime.builder()
-                        .storeTimeId(storeTimeId)
-                        .timeType(timeType)
-                        .startTime(startTime)
-                        .endTime(endTime)
-                        .build();
+            .storeTimeId(storeTimeId)
+            .timeType(timeType)
+            .startTime(startTime)
+            .endTime(endTime)
+            .build();
     }
+
 }
