@@ -5,6 +5,7 @@ import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.Builder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 public record Store(Long id, String storeId, BizNo bizNo, String storeUserId, String franchiseId, StoreType storeType, String storeName,
                     StoreStatus storeStatus,
-                    LocalDate startedAt, Address address, String certificateOfAnalysis, List<StoreTime> storeTimeList) {
+                    LocalDate startedAt, Address address, String certificateOfAnalysis, List<StoreTime> storeTimeList,
+                    String examineReason, String createdBy, LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
 
 }

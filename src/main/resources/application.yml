@@ -19,7 +19,7 @@ spring:
       hibernate:
         show_sql: true
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/store?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://sgyj-dev.synology.me:3306/store?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     password: foodexpress
     username: foodexpress
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,7 +32,7 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
-      
+
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
@@ -48,3 +48,10 @@ logging:
       foodexpress:
         storeservice: DEBUG
     org.hibernate.orm.jdbc.bind: trace
+kafka:
+  examine-store: examineStore
+  config:
+    bootstrap-servers-config: 127.0.0.1
+    group-id-config: mail-service
+  producer:
+    bootstrap-servers: 127.0.0.1:9092
