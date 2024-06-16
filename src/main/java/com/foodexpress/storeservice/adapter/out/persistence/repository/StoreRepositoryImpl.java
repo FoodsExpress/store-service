@@ -17,12 +17,25 @@ import java.util.List;
 import static com.foodexpress.storeservice.adapter.out.persistence.entity.QStoreEntity.storeEntity;
 import static com.querydsl.core.types.Projections.fields;
 
+/**
+ * 상점 Querydsl 구현용 레퍼지토리
+ *
+ * @author seunggu.lee
+ */
 public class StoreRepositoryImpl extends Querydsl5Support implements StoreRepositoryQuerydsl {
 
     protected StoreRepositoryImpl() {
         super(StoreEntity.class);
     }
 
+    /**
+     * 조회 조건에 따른 상점 목록 조회
+     * Cursor Based Pagination 을 구현.
+     *
+     * @param searchCondition 검색 조건.
+     * @param pageable        페이지 조건
+     * @return Slice<Store>   페이징 처리된 결과 값
+     */
     @Override
     public Slice<Store> findAllBySearchCondition(StoreSearchCondition searchCondition, Pageable pageable) {
         List<StoreDto> storeDtoList = select(fields(StoreDto.class,
@@ -60,7 +73,7 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
         )).from(storeEntity)
             .where(
                 whereStoreQuery(searchCondition),
-                eqCursorId(searchCondition.getId())
+                ltCursorId(searchCondition.getId())
             ).limit(pageable.getPageSize() + 1L)
             .orderBy(storeEntity.id.desc())
             .fetch();
@@ -82,7 +95,14 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
                      null);
     }
 
-    private BooleanExpression eqCursorId(Long cursorId) { // (7)
+    /**
+     * 페이징 처리 기준 점 잡는 메서드
+     * 해당 커서 아이디로부터 n 건을 조회하기 위해 기준점을 잡는다.
+     * 만약 null 이라면 처음부터 조회.
+     *
+     * @param cursorId 기준이 될 커서 아이디
+     */
+    private BooleanExpression ltCursorId(Long cursorId) {
         if (cursorId != null) {
             return storeEntity.id.lt(cursorId);
         }
