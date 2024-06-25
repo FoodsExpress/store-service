@@ -14,9 +14,23 @@ import java.util.List;
  * @author seunggu.lee
  */
 @Builder
-public record Store(Long id, String storeId, BizNo bizNo, String storeUserId, String franchiseId, StoreType storeType, String storeName,
+public record Store(Long id,
+                    String storeId,
+                    BizNo bizNo,
+                    String storeUserId,
+                    String franchiseId,
+                    StoreType storeType,
+                    String storeName,
                     StoreStatus storeStatus,
-                    LocalDate startedAt, Address address, String certificateOfAnalysis, List<StoreTime> storeTimeList,
-                    String examineReason, String createdBy, LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
+                    LocalDate startedAt,
+                    double ratings,
+                    int ratingsCount,
+                    int deliveryMinTime,
+                    int deliveryMaxTime,
+                    int deliveryMinFee,
+                    int deliveryMaxFee,
+                    Address address,
+                    String certificateOfAnalysis,
+                    List<StoreTime> storeTimeList) {
 
 }

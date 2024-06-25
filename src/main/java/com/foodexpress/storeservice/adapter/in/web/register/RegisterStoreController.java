@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.register;
 
 import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeCommand;
 import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeUseCase;

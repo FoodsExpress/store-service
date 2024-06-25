@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @Setter
 public class StoreDto {
 
+    private Long id;
+
     private String bizNo;
 
     /**
@@ -48,6 +50,31 @@ public class StoreDto {
      * 상점 시작 일자
      */
     private LocalDate startedAt;
+
+    /**
+     * 평점
+     */
+    private double ratings;
+    /**
+     * 평점 숫자
+     */
+    private int ratingsCount;
+    /**
+     * 배달 예상 최소시간
+     */
+    private int deliveryMinTime;
+    /**
+     * 배달 예상 최대시간
+     */
+    private int deliveryMaxTime;
+    /**
+     * 배달 최소 비용
+     */
+    private int deliveryMinFee;
+    /**
+     * 배달 최대 비용
+     */
+    private int deliveryMaxFee;
 
     /**
      * 우편번호
@@ -149,6 +176,7 @@ public class StoreDto {
             .bname(bname)
             .build();
         return Store.builder()
+            .id(id)
             .storeId(storeId)
             .bizNo(BizNo.create(bizNo))
             .storeUserId(storeUserId)
@@ -157,6 +185,12 @@ public class StoreDto {
             .storeName(storeName)
             .storeStatus(storeStatus)
             .startedAt(startedAt)
+            .ratings(ratings)
+            .ratingsCount(ratingsCount)
+            .deliveryMinTime(deliveryMinTime)
+            .deliveryMaxTime(deliveryMaxTime)
+            .deliveryMinFee(deliveryMinFee)
+            .deliveryMaxFee(deliveryMaxFee)
             .address(addressField)
             .build();
     }

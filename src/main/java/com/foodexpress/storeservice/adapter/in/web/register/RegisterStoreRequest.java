@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.register;
 
 import com.foodexpress.storeservice.application.port.in.command.RegisterStoreCommand;
 import com.foodexpress.storeservice.domain.store.StoreType;

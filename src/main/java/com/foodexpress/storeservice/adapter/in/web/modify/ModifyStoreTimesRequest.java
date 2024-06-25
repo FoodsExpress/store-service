@@ -1,6 +1,6 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
-import com.foodexpress.storeservice.application.port.in.command.ModifyStoreTimesCommand;
+import com.foodexpress.storeservice.application.port.in.ModifyStoreTimesCommand;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

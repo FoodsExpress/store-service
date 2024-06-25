@@ -1,6 +1,8 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
-import com.foodexpress.storeservice.application.port.in.command.ModifyStoreCommand;
+import com.foodexpress.storeservice.adapter.in.web.register.RegisterAddressRequest;
+import com.foodexpress.storeservice.adapter.in.web.register.RegisterStoreTimeRequest;
+import com.foodexpress.storeservice.application.port.in.ModifyStoreCommand;
 import com.foodexpress.storeservice.domain.store.BizNo;
 import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;

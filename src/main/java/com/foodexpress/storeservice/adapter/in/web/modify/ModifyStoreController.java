@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.adapter.in.web;
+package com.foodexpress.storeservice.adapter.in.web.modify;
 
 import com.foodexpress.storeservice.application.port.in.command.ModifyStoreUseCase;
 import com.foodexpress.storeservice.common.BaseRestAnnotation;
