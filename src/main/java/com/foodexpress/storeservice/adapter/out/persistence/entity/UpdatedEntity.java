@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public class UpdatedEntity extends CreatedEntity {
 
     @LastModifiedBy
-    private String updateBy;
+    protected String updatedBy;
 
     @LastModifiedDate
-    private LocalDateTime updateDate;
+    protected LocalDateTime updatedDate;
 
 }

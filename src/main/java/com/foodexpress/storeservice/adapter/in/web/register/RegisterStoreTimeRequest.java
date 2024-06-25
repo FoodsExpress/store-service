@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web.register;
 
-import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeCommand;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeCommand;
 import com.foodexpress.storeservice.domain.storetime.DayOfWeek;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import com.foodexpress.storeservice.domain.storetime.TimeType;

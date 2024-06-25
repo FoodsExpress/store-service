@@ -7,6 +7,7 @@ import com.foodexpress.storeservice.domain.store.StoreType;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import jakarta.persistence.*;
 import lombok.*;
+import org.apache.commons.lang.StringUtils;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -112,6 +113,9 @@ public class StoreEntity extends UpdatedEntity {
         entity.startedAt = store.startedAt();
         entity.storeStatus = store.storeStatus();
         entity.address = AddressEntity.mapToEntity(store.address());
+        if (StringUtils.isNotEmpty(store.updatedBy())) {
+            entity.updatedBy = store.updatedBy();
+        }
         return entity;
     }
 
@@ -139,6 +143,10 @@ public class StoreEntity extends UpdatedEntity {
             .deliveryMinFee(deliveryMinFee)
             .deliveryMaxFee(deliveryMaxFee)
             .address(address.mapToDomain())
+            .createdDate(createdDate)
+            .createdBy(createdBy)
+            .updatedBy(updatedBy)
+            .updatedDate(updatedDate)
             .build();
     }
 

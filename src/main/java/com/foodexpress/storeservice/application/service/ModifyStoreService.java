@@ -1,8 +1,8 @@
 package com.foodexpress.storeservice.application.service;
 
-import com.foodexpress.storeservice.application.port.in.ModifyStoreCommand;
-import com.foodexpress.storeservice.application.port.in.ModifyStoreTimesCommand;
-import com.foodexpress.storeservice.application.port.in.ModifyStoreUseCase;
+import com.foodexpress.storeservice.application.port.in.command.ModifyStoreCommand;
+import com.foodexpress.storeservice.application.port.in.command.ModifyStoreTimesCommand;
+import com.foodexpress.storeservice.application.port.in.command.ModifyStoreUseCase;
 import com.foodexpress.storeservice.application.port.out.AccountPort;
 import com.foodexpress.storeservice.application.port.out.ModifyStorePort;
 import com.foodexpress.storeservice.common.UseCase;
@@ -10,9 +10,10 @@ import com.foodexpress.storeservice.common.exceptions.OmittedRequireFieldExcepti
 import com.foodexpress.storeservice.domain.account.Account;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 
 @UseCase
 @RequiredArgsConstructor
@@ -44,4 +45,5 @@ public class ModifyStoreService implements ModifyStoreUseCase {
         List<StoreTime> storeTimes = modifyStoreTimesCommand.mapToDomain();
         return modifyStorePort.modifyStoreTimes(modifyStoreTimesCommand.getStoreId(), storeTimes);
     }
+
 }
