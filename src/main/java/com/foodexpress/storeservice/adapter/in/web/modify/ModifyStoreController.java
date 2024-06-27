@@ -13,6 +13,12 @@ import java.util.List;
 
 import static com.foodexpress.storeservice.common.util.ApiUtil.success;
 
+/**
+ * 상점 수정 컨트롤러
+ * 해당 기능은 상점과 해당 상점의 시간 정보를 따로 수정하는 기능을 제공한다.
+ *
+ * @author seunggu.lee
+ */
 @BaseRestAnnotation
 @RequiredArgsConstructor
 public class ModifyStoreController {
@@ -22,8 +28,8 @@ public class ModifyStoreController {
     /**
      * 상점 정보 수정
      *
-     * @param modifyStoreRequest
-     * @return
+     * @param modifyStoreRequest 수정할 정보
+     * @return 변경된 상점 정보
      */
     @PatchMapping
     public ApiUtil.ApiResult<ModifyStoreResponse> modifyStore(@RequestBody ModifyStoreRequest modifyStoreRequest) {
@@ -34,8 +40,8 @@ public class ModifyStoreController {
     /**
      * 상점 시간대 수정
      *
-     * @param modifyStoreTimeRequest
-     * @return
+     * @param modifyStoreTimeRequest 수정할 상점 시간 정보
+     * @return 변경된 상점 시간 정보
      */
     @PatchMapping("/time")
     public ApiUtil.ApiResult<ModifyStoreTimeResponse> modifyStoreTime(@RequestBody ModifyStoreTimesRequest modifyStoreTimeRequest) {
