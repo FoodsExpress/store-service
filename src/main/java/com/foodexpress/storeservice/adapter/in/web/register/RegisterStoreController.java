@@ -1,9 +1,9 @@
 package com.foodexpress.storeservice.adapter.in.web.register;
 
-import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeCommand;
-import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeUseCase;
-import com.foodexpress.storeservice.application.port.in.RegisterStoreUseCase;
-import com.foodexpress.storeservice.common.util.ApiUtil;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeCommand;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeUseCase;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreUseCase;
+import com.foodexpress.storeservice.common.util.ApiUtil.ApiResult;
 import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.RequiredArgsConstructor;

@@ -73,7 +73,7 @@ public class StoreRepositoryImpl extends Querydsl5Support implements StoreReposi
         )).from(storeEntity)
             .where(
                 whereStoreQuery(searchCondition),
-                ltCursorId(searchCondition.getId())
+                eqCursorId(searchCondition.getId())
             ).limit(pageable.getPageSize() + 1L)
             .orderBy(storeEntity.id.desc())
             .fetch();

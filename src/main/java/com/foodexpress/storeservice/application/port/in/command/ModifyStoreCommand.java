@@ -1,4 +1,4 @@
-package com.foodexpress.storeservice.application.port.in;
+package com.foodexpress.storeservice.application.port.in.command;
 
 import com.foodexpress.storeservice.domain.address.Address;
 import com.foodexpress.storeservice.domain.store.BizNo;
@@ -6,11 +6,12 @@ import com.foodexpress.storeservice.domain.store.Store;
 import com.foodexpress.storeservice.domain.store.StoreStatus;
 import com.foodexpress.storeservice.domain.store.StoreType;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
-import java.time.LocalDate;
-import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -74,17 +75,18 @@ public class ModifyStoreCommand {
 
     public Store mapToDomain() {
         return Store.builder()
-                    .bizNo(BizNo.create(bizNo))
-                    .storeId(storeId)
-                    .storeUserId(storeUserId)
-                    .franchiseId(franchiseId)
-                    .storeType(storeType)
-                    .storeName(storeName)
-                    .storeStatus(storeStatus)
-                    .startedAt(startedAt)
-                    .address(address)
-                    .certificateOfAnalysis(certificateOfAnalysis)
-                    .storeTimeList(storeTimeList)
-                    .build();
+            .bizNo(BizNo.create(bizNo))
+            .storeId(storeId)
+            .storeUserId(storeUserId)
+            .franchiseId(franchiseId)
+            .storeType(storeType)
+            .storeName(storeName)
+            .storeStatus(storeStatus)
+            .startedAt(startedAt)
+            .address(address)
+            .certificateOfAnalysis(certificateOfAnalysis)
+            .storeTimeList(storeTimeList)
+            .build();
     }
+
 }
