@@ -1,7 +1,7 @@
 package com.foodexpress.storeservice.application.service;
 
-import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeCommand;
-import com.foodexpress.storeservice.application.port.in.RegisterStoreTimeUseCase;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeCommand;
+import com.foodexpress.storeservice.application.port.in.command.RegisterStoreTimeUseCase;
 import com.foodexpress.storeservice.application.port.out.RegisterStoreTimePort;
 import com.foodexpress.storeservice.common.UseCase;
 import com.foodexpress.storeservice.domain.storetime.StoreTime;
