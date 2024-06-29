@@ -16,8 +16,7 @@ public class RegisterStoreService implements RegisterStoreUseCase {
     @Override
     public Store registerStore(RegisterStoreCommand registerStoreCommand) {
         Store store = registerStoreCommand.mapToDomain();
-        registerStorePort.saveStore(store);
-        return store;
+        return registerStorePort.saveStore(store);
     }
 
 }

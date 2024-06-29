@@ -1,22 +1,22 @@
 package com.foodexpress.storeservice.adapter.in.web.register;
 
 import com.foodexpress.storeservice.domain.store.Store;
-import com.foodexpress.storeservice.domain.storetime.StoreTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegisterStoreResponse {
 
-    private Store store;
-    private List<StoreTime> storeTimeList;
+    private RegisteredStoreInfo store;
 
-    public static RegisterStoreResponse of(Store store, List<StoreTime> storeTimeList) {
-        return new RegisterStoreResponse(store, storeTimeList);
+    public static RegisterStoreResponse of(Store store) {
+        RegisterStoreResponse storeInfo = new RegisterStoreResponse();
+        storeInfo.store = RegisteredStoreInfo.from(store);
+        return storeInfo;
     }
 
 }

@@ -3,10 +3,9 @@ package com.foodexpress.storeservice.adapter.in.web.register;
 import com.foodexpress.storeservice.application.port.in.command.RegisterStoreCommand;
 import com.foodexpress.storeservice.domain.store.StoreType;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -42,19 +41,13 @@ public class RegisterStoreRequest {
     /**
      * 상점 시작 일자
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startedAt;
 
     /**
      * 주소
      */
     private RegisterAddressRequest address;
-
-    private List<RegisterStoreTimeRequest> storeTimeList = new ArrayList<>();
-    /**
-     * 원산지
-     * COS 라고도 불림.
-     */
-    private String certificateOfAnalysis;
 
     public RegisterStoreCommand convertCommand() {
         RegisterStoreCommand registerStoreCommand = new RegisterStoreCommand();

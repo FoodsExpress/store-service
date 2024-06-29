@@ -51,7 +51,7 @@ logging:
 kafka:
   examine-store: examineStore
   config:
-    bootstrap-servers-config: 127.0.0.1
+    bootstrap-servers-config: 127.0.0.1:9092
     group-id-config: mail-service
   producer:
     bootstrap-servers: 127.0.0.1:9092

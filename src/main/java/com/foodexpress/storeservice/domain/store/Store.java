@@ -16,14 +16,14 @@ import java.util.List;
 @Builder
 public record Store(Long id,
                     String storeId,
-                    BizNo bizNo,
+                    BizNo bizNo, // 사업자 등록번호
                     String storeUserId,
                     String franchiseId,
                     StoreType storeType,
                     String storeName,
                     StoreStatus storeStatus,
                     LocalDate startedAt,
-                    double ratings,
+                    double ratings, // 평점
                     int ratingsCount,
                     int deliveryMinTime,
                     int deliveryMaxTime,
@@ -31,6 +31,12 @@ public record Store(Long id,
                     int deliveryMaxFee,
                     Address address,
                     String certificateOfAnalysis,
-                    List<StoreTime> storeTimeList) {
+                    List<StoreTime> storeTimeList,
+                    String createdBy,
+                    LocalDateTime createdDate,
+                    String updatedBy,
+                    LocalDateTime updatedDate,
+                    String examineReason
+) {
 
 }
