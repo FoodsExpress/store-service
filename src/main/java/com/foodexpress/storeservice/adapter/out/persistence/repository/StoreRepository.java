@@ -9,4 +9,6 @@ public interface StoreRepository extends JpaRepository<StoreEntity, Long>, Store
 
     Optional<StoreEntity> findByStoreId(String storeId);
 
+    boolean existsByBizNo(String bizNumber);
+
 }

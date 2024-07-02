@@ -17,8 +17,11 @@ public class BizNo {
     private String bizNumber;
 
     public static BizNo create(String bizNumber) {
-        if (isValidBusinessNumber(bizNumber)) {
+        if (!isValidBusinessNumber(bizNumber)) {
             throw new NotValidBusinessNumberException("유효하지 않은 사업자 번호 입니다.");
+        }
+        if (bizNumber.contains("-")) {
+            bizNumber = bizNumber.replace("-", "");
         }
         return new BizNo(bizNumber);
     }

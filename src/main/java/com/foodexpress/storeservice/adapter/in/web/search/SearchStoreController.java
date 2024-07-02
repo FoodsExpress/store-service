@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web.search;
 
-import com.foodexpress.storeservice.application.port.in.SearchStoreUseCase;
+import com.foodexpress.storeservice.application.port.in.query.SearchStoreUseCase;
 import com.foodexpress.storeservice.common.Paged;
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.RequiredArgsConstructor;

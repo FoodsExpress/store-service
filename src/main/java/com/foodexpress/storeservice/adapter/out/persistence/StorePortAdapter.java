@@ -5,6 +5,7 @@ import com.foodexpress.storeservice.adapter.out.persistence.repository.StoreRepo
 import com.foodexpress.storeservice.application.port.out.ExamineStorePort;
 import com.foodexpress.storeservice.application.port.out.RegisterStorePort;
 import com.foodexpress.storeservice.common.PersistenceAdapter;
+import com.foodexpress.storeservice.common.exceptions.BusinessNumberAlreadyExistsException;
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +17,9 @@ public class StorePortAdapter implements RegisterStorePort, ExamineStorePort {
 
     @Override
     public Store saveStore(Store store) {
+        String bizNumber = store.bizNo().getBizNumber();
+        if (storeRepository.existsByBizNo(bizNumber))
+            throw new BusinessNumberAlreadyExistsException();
         StoreEntity storeEntity = StoreEntity.mapToEntity(store);
         storeRepository.save(storeEntity);
         return storeEntity.mapToDomain();

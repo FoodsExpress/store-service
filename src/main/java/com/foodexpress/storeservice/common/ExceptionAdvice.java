@@ -1,5 +1,6 @@
 package com.foodexpress.storeservice.common;
 
+import com.foodexpress.storeservice.common.exceptions.BusinessNumberAlreadyExistsException;
 import com.foodexpress.storeservice.common.exceptions.NotValidBusinessNumberException;
 import com.foodexpress.storeservice.common.util.ApiUtil;
 import jakarta.validation.ConstraintViolationException;
@@ -22,7 +23,10 @@ public class ExceptionAdvice {
         return fail(message, status);
     }
 
-    @ExceptionHandler(NotValidBusinessNumberException.class)
+    @ExceptionHandler({
+        NotValidBusinessNumberException.class,
+        BusinessNumberAlreadyExistsException.class
+    })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiUtil.ApiResult<Void> notValidBusinessNumber(NotValidBusinessNumberException notValidBusinessNumberException) {
         return sendError(notValidBusinessNumberException, HttpStatus.BAD_REQUEST);
