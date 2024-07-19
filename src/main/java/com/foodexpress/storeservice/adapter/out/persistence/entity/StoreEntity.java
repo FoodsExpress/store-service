@@ -125,6 +125,12 @@ public class StoreEntity extends UpdatedEntity {
         return entity;
     }
 
+    public static StoreEntity createNew(Store store) {
+        StoreEntity storeEntity = mapToEntity(store);
+        storeEntity.storeStatus = StoreStatus.PENDING;
+        return storeEntity;
+    }
+
     public Store mapToDomain() {
         return Store.builder()
             .id(id)

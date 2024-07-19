@@ -26,7 +26,8 @@ public class ModifyStoreController {
     private final ModifyStoreUseCase modifyStoreUseCase;
 
     /**
-     * 상점 정보 수정
+     * <p>상점 정보 수정</p>
+     * 상점이 승인되기 전까지 정보를 수정할 수 있다.
      *
      * @param modifyStoreRequest 수정할 정보
      * @return 변경된 상점 정보

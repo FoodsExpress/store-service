@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.foodexpress.storeservice.domain.store.StoreStatus.*;
+
 @PersistenceAdapter
 @RequiredArgsConstructor
 public class ModifyStorePortAdapter implements ModifyStorePort {
@@ -27,10 +29,18 @@ public class ModifyStorePortAdapter implements ModifyStorePort {
     @Override
     @Transactional
     public Store modifyStore(Store store) {
-        StoreEntity modifyStore = storeRepository.findByStoreId(store.storeId())
-            .orElseThrow(() -> new OmittedRequireFieldException("일치하는 상점을 찾을 수 없습니다."));
+        StoreEntity modifyStore =
+            storeRepository.findByStoreId(store.storeId()).orElseThrow(() -> new OmittedRequireFieldException("일치하는 상점을 찾을 수 없습니다."));
+        if (isNotApproved(modifyStore)) {
+            throw new OmittedRequireFieldException("승인된 상점은 수정할 수 없습니다.");
+        }
         modifyStore.modify(store);
         return modifyStore.mapToDomain();
+    }
+
+    private static boolean isNotApproved(StoreEntity modifyStore) {
+        return modifyStore.getStoreStatus() != PENDING && modifyStore.getStoreStatus() != UNDER_REVIEW
+            && modifyStore.getStoreStatus() != REJECT;
     }
 
     @Override
