@@ -13,6 +13,11 @@ import java.util.List;
 
 import static com.foodexpress.storeservice.common.util.ApiUtil.success;
 
+/**
+ * 상점의 수정 기능을 담당하는 컨트롤러
+ *
+ * @author seunggu.lee
+ */
 @BaseRestAnnotation
 @RequiredArgsConstructor
 public class ModifyStoreController {
@@ -20,10 +25,11 @@ public class ModifyStoreController {
     private final ModifyStoreUseCase modifyStoreUseCase;
 
     /**
-     * 상점 정보 수정
+     * <p>상점 정보 수정</p>
+     * 상점이 승인되기 전까지 정보를 수정할 수 있다.
      *
-     * @param modifyStoreRequest
-     * @return
+     * @param modifyStoreRequest 상점 수정 요청 정보
+     * @return 변경된 상점 정보
      */
     @PatchMapping
     public ApiUtil.ApiResult<ModifyStoreResponse> modifyStore(@RequestBody ModifyStoreRequest modifyStoreRequest) {

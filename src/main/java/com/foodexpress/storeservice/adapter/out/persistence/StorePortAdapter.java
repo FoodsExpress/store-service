@@ -20,14 +20,16 @@ public class StorePortAdapter implements RegisterStorePort, ExamineStorePort {
         String bizNumber = store.bizNo().getBizNumber();
         if (storeRepository.existsByBizNo(bizNumber))
             throw new BusinessNumberAlreadyExistsException();
-        StoreEntity storeEntity = StoreEntity.mapToEntity(store);
+        StoreEntity storeEntity = StoreEntity.createNew(store);
         storeRepository.save(storeEntity);
         return storeEntity.mapToDomain();
     }
 
     @Override
     public void examine(Store store) {
-        StoreEntity.mapToEntity(store);
+        StoreEntity storeEntity = StoreEntity.mapToEntity(store);
+        storeRepository.save(storeEntity);
+
     }
 
 }
