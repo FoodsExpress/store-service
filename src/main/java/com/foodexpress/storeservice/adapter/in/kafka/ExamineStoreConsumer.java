@@ -2,8 +2,7 @@ package com.foodexpress.storeservice.adapter.in.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.foodexpress.storeservice.application.port.in.command.ExamineStoreUseCase;
-import com.foodexpress.storeservice.common.KafkaConsumer;
+import com.foodexpress.storeservice.common.annotations.KafkaConsumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 

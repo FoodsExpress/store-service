@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.domain.store;
 
-import com.foodexpress.storeservice.common.exceptions.NotValidBusinessNumberException;
+import com.foodexpress.storeservice.common.advice.exceptions.NotValidBusinessNumberException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,17 +17,17 @@ public class BizNo {
     private String bizNumber;
 
     public static BizNo create(String bizNumber) {
-        if (!isValidBusinessNumber(bizNumber)) {
-            throw new NotValidBusinessNumberException("유효하지 않은 사업자 번호 입니다.");
-        }
         if (bizNumber.contains("-")) {
             bizNumber = bizNumber.replace("-", "");
+        }
+        if (!isValidBusinessNumber(bizNumber)) {
+            throw new NotValidBusinessNumberException("유효하지 않은 사업자 번호 입니다.");
         }
         return new BizNo(bizNumber);
     }
 
     public static boolean isValidBusinessNumber(String number) {
-        if (number.length() != 10) {
+        if (number.length() != 11) {
             return false;
         }
 

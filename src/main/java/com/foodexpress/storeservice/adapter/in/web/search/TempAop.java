@@ -1,6 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web.search;
 
-import com.foodexpress.storeservice.common.Paged;
+import com.foodexpress.storeservice.common.paging.Paged;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

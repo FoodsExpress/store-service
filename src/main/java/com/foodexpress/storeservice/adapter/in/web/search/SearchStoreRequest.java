@@ -1,9 +1,6 @@
 package com.foodexpress.storeservice.adapter.in.web.search;
 
-import com.foodexpress.storeservice.application.port.in.query.SearchStoreQuery;
 import lombok.Data;
-
-import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Data
 public class SearchStoreRequest {
