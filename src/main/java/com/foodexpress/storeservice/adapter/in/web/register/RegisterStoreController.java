@@ -1,7 +1,7 @@
 package com.foodexpress.storeservice.adapter.in.web.register;
 
 import com.foodexpress.storeservice.application.port.in.command.RegisterStoreUseCase;
-import com.foodexpress.storeservice.common.util.ApiUtil.ApiResult;
+import com.foodexpress.storeservice.common.util.ApiUtil;
 import com.foodexpress.storeservice.domain.store.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
